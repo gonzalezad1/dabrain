@@ -1,0 +1,78 @@
+
+
+<div class="header">
+    <div class="container clearfix">
+        <h1 <p id="logo">Da Brain</p> </h1>
+        <nav>
+        </nav>
+    </div>
+</div>
+
+        <div id="contentliquid"><div id="content">
+      <h1>Here are the questions Da Brain answered:</h1>
+
+        <%if logged_in? %>
+        <%questions = Question.all%>
+        <%questions.each do |question|%>
+        <br>
+        <p><%=question.question_title %><p>
+
+        <% answers = Answer.all%>
+        <%answers.each do |answers|%>
+        <%if answers.question_id == question.id%>
+        <br>
+        <p><%=answers.answer_body %><p>     
+        <br>
+        <%end%>
+        <%end%>
+        <%end%>
+        <%end%>
+
+
+
+</form>
+       </div></div>
+        <div id="leftcolumn">
+            <p>Ask Da Brain a question!</p>
+            <form method="post" action="/specific">
+                <input type=text placeholder="Ask Da Brain" name="specific_question"><br>
+                <input type=submit value="Search!">
+            </form>
+        </div>
+        <div id="rightcolumn">
+            <p>Login to Da Brain!</p>
+
+            <h2>Login to your account:</h2>
+            <form method="post" action="/login_user">
+                <input type=text placeholder="Email" name="email"><br>
+                <input type=password placeholder="Password" name="password"></br>
+                <input type=submit value="Login">
+            </form>
+
+            <p></p>
+
+            <h2>Sign up for an account!</h2>
+
+            <form method="post" action="/signup">
+            <input type=text placeholder="Username" name="user[username]"><br>
+            <input type=text placeholder="Firstname" name="user[firstname]"><br>
+            <input type=text placeholder="Lastname" name="user[lastname]"><br>
+            <input type=text placeholder="Email" name="user[email]"><br>
+            <input type=password placeholder="password" name="user[password]"></br>
+            <input type=submit value="Sign up">
+
+        </form>
+
+                
+            <div class="gradient"></div>
+
+        </div>
+        <div id="footer">
+            <p>Da Brain (c) 2016</p>
+        </div>
+    </div>
+
+
+
+
+

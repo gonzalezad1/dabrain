@@ -1,0 +1,53 @@
+<!-- Main -->
+				<div id="main-wrapper">
+					<div class="container">
+						<div id="content">
+
+							<!-- Content -->
+								<article>
+
+									<h2>
+					<%if logged_in? %>
+			        <%question = Question.find(params[:question_id])%>
+			        <%=question.question_title%>
+									</h2>
+			 		<%answer = Answer.all%>
+			 		<%answer.each do |answer|%>
+			 		<%if answer.question_id == question.id%>
+			 		<p><%=answer.answer_body%></p>
+			 			<%if answer.user_id == session[:user_id]%>
+			 		
+			<table class="tg">
+			  <tr>
+			    <th class="tg-031e"><FORM ACTION="/question/<%=params[:question_id]%>/<%= answer.id%>" METHOD=POST> <INPUT TYPE=SUBMIT VALUE="Delete my answer"> </FORM></th>
+			    <th class="tg-031e"><form method="post" action="/+1/<%=params[:question_id]%>/<%= answer.id%>">
+					<button type="submit">+1</button>
+					</form>
+				</th>
+			    <th class="tg-031e"><form method="post" action="/-1/<%=params[:question_id]%>/<%= answer.id%>">
+					<button type="submit">-1</button>
+					</form>
+				</th>
+			    <th class="tg-031e">Votes:
+			    	<%= Answervote.where(answer_id: answer.id).sum(:answer_vote_count)%>
+			    </th>
+			  </tr>
+			</table>
+				<br>
+			        <%end%>
+			        <%end%>
+			        <%end%>
+
+
+<FORM ACTION="/question/<%=params[:question_id]%>/user_answer" METHOD=POST> your answer:<BR> <TEXTAREA NAME="answer_value" COLS=40 ROWS=6></TEXTAREA> <P><INPUT TYPE=SUBMIT VALUE="submit"> </FORM>
+
+
+
+
+<%end%>
+
+								</article>
+
+						</div>
+					</div>
+				</div>

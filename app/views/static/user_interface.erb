@@ -1,0 +1,51 @@
+<!-- Main -->
+	<div id="main-wrapper">
+		<div class="container">
+			<div id="content">
+
+	<!-- Content -->
+	<h2> Your Questions: </h2>
+	
+				<h3> 
+					<%if logged_in? %>
+						<% user_questions = Question.all %>
+						<% user_questions.each do |q| %>
+		                    <% if current_user == q.user %>
+		                    <table class="tg">
+			  				<tr>
+								<th class="tg-031e"> 
+									<a href="/question/<%= q.id %>"><%= q.question_title%></a>
+									</th>
+							</tr>
+							</table>
+						<%end%>
+					<%end%>
+					<%end%>
+				</h3>
+	
+
+<h2> Your Answers: </h2>
+
+				<p>
+					<%if logged_in? %>
+						<% user_answers = Answer.all %>
+						<% user_questions = Question.all %>
+						<% user_answers.each do |y| %>
+		                    <% if current_user == y.user %>
+								<%= y.answer_body%> 
+							<%user_questions.each do |question|%>
+							<% if y.question_id == question.id  %>
+								(question:<a href="/question/<%=question.id%>"> <%=question.question_title
+								%> </a>)
+								<br><br>
+						<%end%>	
+						<%end%>		
+						<%end%>
+					<%end%>
+					<%end%>
+				</p>
+
+			</div>
+		</div>
+	</div>
+

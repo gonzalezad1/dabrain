@@ -1,0 +1,169 @@
+<div id="page-wrapper">
+
+
+            <!-- Banner -->
+                <div id="banner-wrapper">
+                    <div id="banner" class="box container">
+                        <div class="row">
+                            <div class="7u 12u(medium)">
+                                <h2>Hi. This is DaBrain</h2>
+                                <p>Ask any question.</p>
+                                <p>Get answers, fast.</p>
+                            </div>
+                            <div class="5u 12u(medium)">
+                                <ul>
+                                    <li><form method="post" action="/login_user">
+                <input type=text placeholder="Email" name="email"><br>
+                <input type=password placeholder="Password" name="password"></br>
+                <input type=submit value="Login"> 
+            </li> </form>
+                                    <!-- <li><a href="#" class="button alt big icon fa-question-circle">More info</a></li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Features -->
+                <div id="features-wrapper">
+                    <div class="container">
+                        <div class="row">
+                            <div class="4u 12u(medium)">
+
+                                <!-- Box -->
+                                    <section class="box feature">
+                                        <a href="/" class="image featured"><img src="img/pic02.png" alt="" /></a>
+                                        <div class="inner">
+                                            <header>
+                                                 <h2>
+                                            <%if logged_in? %>
+                                            <%random_question1 = Question.pluck(:question_title, :id).shuffle[1]%>
+                                      
+                                            <a href="/question/<%=random_question1[1]%>"><%=random_question1[0]%></a>
+                                            
+                                            </h2>
+                                            </header>
+                                            <p>
+                                                 <% answer_random = Answer.all %>
+                                                 <% answer_random.each do |random| %>
+                                                    <% if random_question1[1] == random.question_id %>
+                                                     <%= random.answer_body %>
+                                                     <%break%>
+                                                     <% end %>
+                                                 <% end %>
+                                            <%else%>
+                                                <p> Please login to view all the questions !</p>
+                                            <%end%>
+                                            </p>
+                                        </div>
+                                    </section>
+
+                            </div>
+                            <div class="4u 12u(medium)">
+
+                                <!-- Box -->
+                                    <section class="box feature">
+                                        <a href="/" class="image featured"><img src="img/pic02.png" alt="" /></a>
+                                        <div class="inner">
+                                            <header>
+                                                <h2>
+                                            <%if logged_in? %>
+                                            <%random_question2 = Question.pluck(:question_title, :id).shuffle[1]%>
+                                      
+                                            <a href="/question/<%=random_question2[1]%>"><%=random_question2[0]%></a>
+                                            
+                                            </h2>
+                                           </header>
+                                           <p>
+                                                 <% answer_random2 = Answer.all %>
+                                                 <% answer_random2.each do |random| %>
+                                                <% if random_question2[1] == random.question_id %>
+                                                 <%= random.answer_body %>
+                                                 <%break%>
+                                                 <% end %>
+                                                 <% end %>
+                                                 <%else%>
+                                                <p> Please login to view all the questions !</p>
+                                            <%end%>
+                                                </p>
+                                        </div>
+                                    </section>
+
+                            </div>
+                            <div class="4u 12u(medium)">
+
+                                <!-- Box -->
+                                    <section class="box feature">
+                                        <a href="/" class="image featured"><img src="img/pic02.png" alt="" /></a>
+                                        <div class="inner">
+                                            <header>
+                                                 <h2>
+                                            <%if logged_in? %>
+                                            <%random_question3 = Question.pluck(:question_title, :id).shuffle[1]%>
+                                      
+                                            <a href="/question/<%=random_question3[1]%>"><%=random_question3[0]%></a>
+                                            
+                                            </h2>
+                                            </header>
+                                            <p>
+                                                 <% answer_random1 = Answer.all %>
+                                                 <% answer_random1.each do |random| %>
+                                                <% if random_question3[1] == random.question_id %>
+                                                 <%= random.answer_body %>
+                                                <%break%>
+                                                 <% end %>
+                                                 <% end %>
+                                                 <%else%>
+                                                <p> Please login to view all the questions !</p>
+                                            <%end%>
+                                                </p>
+                                        </div>
+                                    </section>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Main -->
+                <div id="main-wrapper">
+                    <div class="container">
+                        <div class="row 200%">
+                            <div class="4u 12u(medium)">
+
+                                <!-- Sidebar -->
+                                    <div id="sidebar">
+                                        <section class="widget thumbnails">
+                                            <h3>Sign-up here to DaBrain!</h3>
+                                            <form method="post" action="/signup">
+                                            <input type=text placeholder="Username" name="user[username]"><br>
+                                            <!-- <input type=text placeholder="Firstname" name="user[firstname]"><br>
+                                            <input type=text placeholder="Lastname" name="user[lastname]"><br> -->
+                                            <input type=text placeholder="Email" name="user[email]"><br>
+                                            <input type=password placeholder="Password" name="user[password]"></br>
+                                            <input type=submit value="Sign up">
+
+                                        </form>
+                                        </section>
+                                    </div>
+
+                            </div>
+                            <div class="8u 12u(medium) important(medium)">
+
+                                <!-- Content -->
+                                    <div id="content">
+                                        <section class="last">
+                                            <h3>Ask DaBrain:</h3>
+                                            <%if logged_in? %>
+                                          <FORM ACTION="/new_question" METHOD=POST> <TEXTAREA NAME="question_value" COLS=30 ROWS=5></TEXTAREA> <P> <br><INPUT TYPE=SUBMIT VALUE="Create question"> </FORM>
+                                          <%else%>
+                                          <p>Please login to create a question!</p>
+                                          <%end%>
+                                        
+                                        </section>
+                                    </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>

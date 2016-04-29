@@ -1,0 +1,42 @@
+
+<!-- Main -->
+                <div id="main-wrapper">
+                    <div class="container">
+                        <div id="content">
+
+                            <!-- Content -->
+                                <article>
+
+                                    <h2>
+                    <%if logged_in? %>
+                    <h2>Previously, on DaBrain:</h2>
+                                            <p><%if logged_in? %>
+                                            <%questions = Question.all%>
+                                            <%questions.each do |question|%>
+                                            <p><a href="/question/<%=question.id %>"><%=question.question_title %></a><p>
+
+                                            <%end%>
+                                            <%else%>
+                                                <p> Please login to view all the questions !</p>
+                                            <%end%></p>
+
+
+
+
+<%end%>
+
+                                </article>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+<!-- Content -->
+                                  
+                                          
+                                    
+                            
